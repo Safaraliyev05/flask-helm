@@ -1,0 +1,8 @@
+image:
+  repository: your_dockerhub/my-project
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 8000
