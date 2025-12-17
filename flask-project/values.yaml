@@ -1,8 +1,59 @@
+replicaCount: 1
+
 image:
-  repository: your_dockerhub/my-project
+  repository: safaral1yev05/flask-app
   tag: latest
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
-  port: 8000
+  port: 8080
+
+ingress:
+  enabled: false        # Set true if you want to enable ingress
+  className: ""
+  annotations: {}
+  hosts:
+    - host: flask.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+# Health checks
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 10
+  periodSeconds: 5
+
+# Environment variables
+env:
+  - name: ENV
+    value: "production"
+  # - name: DATABASE_URL
+  #   valueFrom:
+  #     secretKeyRef:
+  #       name: flask-secret
+  #       key: database_url
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

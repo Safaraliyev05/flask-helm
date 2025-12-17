@@ -1,2 +1,13 @@
 docker build -t flask-app .
 docker run -p 8000:8000 flask-app
+
+docker tag flask-app:latest safaral1yev05/flask-app:latest
+docker push safaral1yev05/flask-app:latest
+
+
+helm template flask-project ./flask-project
+helm install flask-project ./flask-project
+
+helm template flask-app ./flask-project
+kubectl get ingress
+kubectl describe ingress flask-app

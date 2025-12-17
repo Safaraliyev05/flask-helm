@@ -7,8 +7,6 @@ Expand the name of the chart.
 
 {{/*
 Create a default fully qualified app name.
-We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
-If release name contains chart name it will be used as a full name.
 */}}
 {{- define "flask-project.fullname" -}}
 {{- if .Values.fullnameOverride }}
@@ -48,15 +46,4 @@ Selector labels
 {{- define "flask-project.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "flask-project.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end }}
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "flask-project.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "flask-project.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
 {{- end }}
