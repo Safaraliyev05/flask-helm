@@ -46,13 +46,11 @@ readinessProbe:
 
 # Environment variables
 env:
-  - name: ENV
-    value: "production"
-  # - name: DATABASE_URL
-  #   valueFrom:
-  #     secretKeyRef:
-  #       name: flask-secret
-  #       key: database_url
+  - name: FLASK_RUN_HOST
+    value: "0.0.0.0"
+  - name: FLASK_RUN_PORT
+    value: "8080"
+
 
 nodeSelector: {}
 tolerations: []
