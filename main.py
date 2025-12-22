@@ -10,7 +10,7 @@ def hello():
     return "Hello from Dockerized Flask app! 🚀"
 
 
-@app.route("/health", methods=["GET"], strict_slashes=False)
+@app.route("/health")
 def health():
     return jsonify(status="ok")
 
