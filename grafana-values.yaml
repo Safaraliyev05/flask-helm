@@ -1,0 +1,39 @@
+# grafana-values.yaml
+
+adminUser: admin
+adminPassword: mysecretpassword
+
+service:
+  type: ClusterIP
+  port: 3000
+
+# Prometheus datasource
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        access: proxy
+        url: http://prometheus.monitoring.svc.cluster.local:9090
+        isDefault: true
+
+# Dashboard provider
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+      - name: 'default'
+        orgId: 1
+        folder: ''
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards
+
+# Dashboards
+dashboards:
+  default:
+    flask-dashboard:
+      file: flask-dashboard.json
