@@ -5,10 +5,10 @@ RUN groupadd -g 3000 appgroup && \
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY ../../app/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY ../.. .
 
 RUN chown -R appuser:appgroup /app
 

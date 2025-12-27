@@ -23,3 +23,6 @@ Grafana
 http://localhost:3000
 
 helm upgrade my-grafana grafana/grafana -f grafana-values.yaml -n monitoring
+
+kubectl get clusterrole | grep -E "prometheus|grafana"
+kubectl get clusterrolebinding | grep -E "prometheus|grafana"

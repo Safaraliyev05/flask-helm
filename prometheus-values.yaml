@@ -1,8 +1,0 @@
-server:
-  global:
-    scrape_interval: 15s
-
-  additionalScrapeConfigs:
-    - job_name: 'flask-app'
-      static_configs:
-        - targets: ['myapp-argo-application-flask-project.myapp.svc.cluster.local:8080']
